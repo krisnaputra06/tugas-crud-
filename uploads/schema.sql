@@ -5,5 +5,5 @@ CREATE TABLE books (
     tahun_terbit INT NOT NULL,
     kategori VARCHAR(50) NOT NULL,
     cover VARCHAR(255),
-    status ENUM('tersedia','habis') NOT NULL
+    status VARCHAR(20) NOT NULL
 );

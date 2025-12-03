@@ -1,19 +1,19 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db   = "crud_buku";
-    private $user = "root";
-    private $pass = "";
-    public $pdo;
+    private $dbname = "crud_buku";
+    private $username = "root";
+    private $password = "";
 
-    public function __construct() {
+    public function getConnection() {
         try {
-            $this->pdo = new PDO(
-                "mysql:host={$this->host};dbname={$this->db}",
-                $this->user,
-                $this->pass
+            $conn = new PDO(
+                "mysql:host={$this->host};dbname={$this->dbname}",
+                $this->username,
+                $this->password
             );
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conn;
         } catch (PDOException $e) {
             die("Koneksi gagal: " . $e->getMessage());
         }

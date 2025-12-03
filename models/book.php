@@ -5,7 +5,7 @@ class Book {
     private $db;
 
     public function __construct() {
-        $this->db = (new Database())->pdo;
+        $this->db = (new Database())->getConnection();
     }
 
     public function getAll() {
@@ -14,26 +14,30 @@ class Book {
     }
 
     public function getById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM books WHERE id=?");
+        $stmt = $this->db->prepare("SELECT * FROM books WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function create($judul, $penulis, $tahun, $kategori, $cover, $status) {
-        $stmt = $this->db->prepare("INSERT INTO books (judul, penulis, tahun_terbit, kategori, cover, status)
-                                    VALUES (?,?,?,?,?,?)");
+        $stmt = $this->db->prepare(
+            "INSERT INTO books (judul, penulis, tahun_terbit, kategori, cover, status)
+             VALUES (?, ?, ?, ?, ?, ?)"
+        );
         return $stmt->execute([$judul, $penulis, $tahun, $kategori, $cover, $status]);
     }
 
     public function update($id, $judul, $penulis, $tahun, $kategori, $cover, $status) {
-        $stmt = $this->db->prepare("UPDATE books 
-                                    SET judul=?, penulis=?, tahun_terbit=?, kategori=?, cover=?, status=?
-                                    WHERE id=?");
+        $stmt = $this->db->prepare(
+            "UPDATE books 
+             SET judul=?, penulis=?, tahun_terbit=?, kategori=?, cover=?, status=?
+             WHERE id=?"
+        );
         return $stmt->execute([$judul, $penulis, $tahun, $kategori, $cover, $status, $id]);
     }
 
     public function delete($id) {
-        $stmt = $this->db->prepare("DELETE FROM books WHERE id=?");
+        $stmt = $this->db->prepare("DELETE FROM books WHERE id = ?");
         return $stmt->execute([$id]);
     }
 }
