@@ -46,7 +46,7 @@ Ganti Cover Baru (opsional): <br>
 Status: <br>
 <select name="status">
     <option value="tersedia" <?= htmlspecialchars($buku['status'])=="tersedia"?"selected":"" ?>>Tersedia</option>
-    <option value="habis" <?= htmlspecialchars($buku['status'])=="habis"?"selected":"" ?>>Habis</option>
+    <option value="dipinjam" <?= htmlspecialchars($buku['status'])=="dipinjam"?"selected":"" ?>>dipinjam</option>
 </select><br><br>
 
 <button type="submit">Update</button>

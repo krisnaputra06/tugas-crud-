@@ -35,7 +35,7 @@ Cover:<br>
 Status: <br>
 <select name="status">
     <option value="tersedia">Tersedia</option>
-    <option value="habis">Habis</option>
+    <option value="dipinjam">dipinjam</option>
 </select>
 <br><br>
 
