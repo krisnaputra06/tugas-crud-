@@ -20,24 +20,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form method="POST" enctype="multipart/form-data">
 
 Judul: <br>
-<input type="text" name="judul" value="<?= $buku['judul'] ?>" required><br><br>
+<input type="text" name="judul" value="<?= htmlspecialchars($buku['judul']) ?>" required><br><br>
 
 Penulis: <br>
-<input type="text" name="penulis" value="<?= $buku['penulis'] ?>" required><br><br>
+<input type="text" name="penulis" value="<?= htmlspecialchars($buku['penulis']) ?>" required><br><br>
 
 Tahun Terbit: <br>
-<input type="number" name="tahun" value="<?= $buku['tahun_terbit'] ?>" required><br><br>
+<input type="number" name="tahun" value="<?= htmlspecialchars($buku['tahun_terbit']) ?>" required><br><br>
 
 Kategori: <br>
 <select name="kategori">
-    <option value="Fiksi" <?= $buku['kategori']=="Fiksi"?"selected":"" ?>>Fiksi</option>
-    <option value="Non-Fiksi" <?= $buku['kategori']=="Non-Fiksi"?"selected":"" ?>>Non-Fiksi</option>
-    <option value="Edukasi" <?= $buku['kategori']=="Edukasi"?"selected":"" ?>>Edukasi</option>
+    <option value="Fiksi" <?= htmlspecialchars($buku['kategori'])=="Fiksi"?"selected":"" ?>>Fiksi</option>
+    <option value="Non-Fiksi" <?= htmlspecialchars($buku['kategori'])=="Non-Fiksi"?"selected":"" ?>>Non-Fiksi</option>
+    <option value="Edukasi" <?= htmlspecialchars($buku['kategori'])=="Edukasi"?"selected":"" ?>>Edukasi</option>
 </select><br><br>
 
 Cover Lama: <br>
 <?php if ($buku['cover']): ?>
-    <img src="../uploads/<?= $buku['cover'] ?>" width="90"><br><br>
+    <img src="../uploads/<?= htmlspecialchars($buku['cover']) ?>" width="90"><br><br>
 <?php endif; ?>
 
 Ganti Cover Baru (opsional): <br>
@@ -45,8 +45,8 @@ Ganti Cover Baru (opsional): <br>
 
 Status: <br>
 <select name="status">
-    <option value="tersedia" <?= $buku['status']=="tersedia"?"selected":"" ?>>Tersedia</option>
-    <option value="habis" <?= $buku['status']=="habis"?"selected":"" ?>>Habis</option>
+    <option value="tersedia" <?= htmlspecialchars($buku['status'])=="tersedia"?"selected":"" ?>>Tersedia</option>
+    <option value="habis" <?= htmlspecialchars($buku['status'])=="habis"?"selected":"" ?>>Habis</option>
 </select><br><br>
 
 <button type="submit">Update</button>

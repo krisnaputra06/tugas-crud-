@@ -16,20 +16,20 @@ $books = $controller->index();
 
 <?php foreach ($books as $b): ?>
 <tr>
-    <td><?= $b['id'] ?></td>
-    <td><?= $b['judul'] ?></td>
-    <td><?= $b['penulis'] ?></td>
-    <td><?= $b['tahun_terbit'] ?></td>
-    <td><?= $b['kategori'] ?></td>
+    <td><?= htmlspecialchars($b['id']) ?></td>
+    <td><?= htmlspecialchars($b['judul']) ?></td>
+    <td><?= htmlspecialchars($b['penulis']) ?></td>
+    <td><?= htmlspecialchars($b['tahun_terbit']) ?></td>
+    <td><?= htmlspecialchars($b['kategori']) ?></td>
     <td>
         <?php if ($b['cover']): ?>
-            <img src="../uploads/<?= $b['cover'] ?>" width="70">
+            <img src="../uploads/<?= htmlspecialchars($b['cover']) ?>" width="70">
         <?php endif; ?>
     </td>
-    <td><?= $b['status'] ?></td>
+    <td><?= htmlspecialchars($b['status']) ?></td>
     <td>
-        <a href="edit.php?id=<?= $b['id'] ?>">Edit</a> | 
-        <a href="delete.php?id=<?= $b['id'] ?>" onclick="return confirm('Hapus?')">Delete</a>
+        <a href="edit.php?id=<?= htmlspecialchars($b['id']) ?>">Edit</a> | 
+        <a href="delete.php?id=<?= htmlspecialchars($b['id']) ?>" onclick="return confirm('Hapus?')">Delete</a>
     </td>
 </tr>
 <?php endforeach; ?>

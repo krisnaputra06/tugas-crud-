@@ -18,8 +18,10 @@ class BookController {
         if (!empty($file['cover']['name'])) {
             $filename = time() . "_" . $file['cover']['name'];
             $path = __DIR__ . '/../uploads/' . $filename;
-            move_uploaded_file($file['cover']['tmp_name'], $path);
-            $cover = $filename;
+            // PENTING: Lakukan validasi tipe file dan ukuran di sini sebelum move!
+            if (move_uploaded_file($file['cover']['tmp_name'], $path)) {
+                $cover = $filename;
+            }
         }
 
         return $this->model->create(
@@ -44,8 +46,16 @@ class BookController {
         if (!empty($file['cover']['name'])) {
             $filename = time() . "_" . $file['cover']['name'];
             $path = __DIR__ . '/../uploads/' . $filename;
-            move_uploaded_file($file['cover']['tmp_name'], $path);
-            $cover = $filename;
+            
+            // PENTING: Hapus cover lama jika ada sebelum upload baru
+            if ($book['cover'] && file_exists(__DIR__ . '/../uploads/' . $book['cover'])) {
+                unlink(__DIR__ . '/../uploads/' . $book['cover']);
+            }
+            
+            // PENTING: Lakukan validasi tipe file dan ukuran di sini sebelum move!
+            if (move_uploaded_file($file['cover']['tmp_name'], $path)) {
+                $cover = $filename;
+            }
         }
 
         return $this->model->update(
@@ -60,6 +70,18 @@ class BookController {
     }
 
     public function destroy($id) {
+        $book = $this->model->getById($id);
+
+        if (!$book) {
+            return false; // Buku tidak ditemukan
+        }
+
+        // PENTING: Hapus file cover fisik
+        if ($book['cover'] && file_exists(__DIR__ . '/../uploads/' . $book['cover'])) {
+            unlink(__DIR__ . '/../uploads/' . $book['cover']);
+        }
+        
+        // Hapus data dari database
         return $this->model->delete($id);
     }
 }
