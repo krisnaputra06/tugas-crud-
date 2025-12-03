@@ -18,5 +18,6 @@ class Database {
             die("Koneksi gagal: " . $e->getMessage());
         }
     }
-}
+}                                   // created by K 
 ?>
+
