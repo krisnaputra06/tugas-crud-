@@ -18,6 +18,6 @@ class Database {
             die("Koneksi gagal: " . $e->getMessage());
         }
     }
-}                                   // created by K 
+}                                   // created by I Wayan Krisna Eka PUtra ; 240030067
 ?>
 
