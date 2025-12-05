@@ -20,7 +20,7 @@ Tujuan utama aplikasi ini adalah untuk memahami:
 ---
 
 ## Struktur Folder
-
+```
 project/
 │── config/
 │ └── Database.php
@@ -38,7 +38,7 @@ project/
 │ └── index.php
 │── index.php
 └── readme.MD
-
+```
 ---
 
 ### Penjelasan Singkat Fungsi Aplikasi
@@ -69,6 +69,7 @@ Gunakan file `dbbuku.sql`.
 CREATE DATABASE dbbuku ;
 use dbbuku ;
 
+```
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -90,6 +91,7 @@ CREATE TABLE books (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+``` 
 ---
 
 Menjalankan Aplikasi
